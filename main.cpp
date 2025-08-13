@@ -1,59 +1,82 @@
-#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <vector>
 
-// Escreva um algoritmo que solicite ao usuário três notas de N alunos em uma turma
-// e ao final, apresente ao usuário:
+/* Escreva um algoritmo que solicite ao usuário três notas de N alunos em uma turma e ao final, apresente ao usuário:
 
-// Versão 1: A quantidade de alunos na turma e a média aritmética das notas de cada aluno
-// Versão 2: Solicitar ao usuário a medida de aprovação e quantidade provas e gerar relatório com
-// 			nome e as notas do aluno
-// Versão 3: Introduzir o campo sexo (M-masculino ou F-feminino) e gerar
-//			estatística de aprovação/reprovação por sexto
-// Versão 4: Apresentar os relatorios ordenadas por media aritmetica das notas
+* Versao 1: A quantidade de alunos na turma e a media aritmetica das notas de cada aluno
+* Versao 2: Solicitar ao usuario a medida de aprovacao e quantidade provas e gerar relatorio com nome e as notas do
+aluno
+* Versao 3: Introduzir o campo sexo (M-masculino ou F-feminino) e gerar estatistica de aprovacao/reprovacao por sexto
+* Versao 4: Apresentar os relatorios ordenadas por media aritmetica das notas
+* Versao 5: Apresentar um menu de opcoes
+* - 1: Relatorio de aprovados;
+* - 2: Relatorio de reprovados; e
+* - 3: Sair do programa.
+*
+* Inserir um gráfico em barra e apresentar a % dos alunos aprovados, sugestao do professor.
+*/
 
-#define APROVADO 6
-
-struct sexo {
+// strucs
+struct Sexo {
     char genero;
 };
 
-struct aluno {
-    char nome[30];
-    float nota[3];
-    struct sexo sexo;
+struct Aluno {
+    std::string nome;
+    std::vector<float> nota;
+    Sexo sexo;
     bool aprovado;
+    float media;
 };
 
-int qtdAluno = 0;
 
 int main() {
-    // declação de variaveis
-    aluno turma[100];
-    char resposta;
+    // declacao de variaveis local
+    int qtdTotalAluno=0;
+    int qtdTotalProva=0;
+    int contAluno=0;
+    float mediaAprovacao=0;
+
+    // recebe o total de alunos
+    std::cout << "Informe o total de alunos na turma: " << std::endl;
+    std::cin >> qtdTotalAluno;
+
+    // recebe o total de provas da turma
+    std::cout << "Informe o total de provas: " << std::endl;
+    std::cin >> qtdTotalProva;
+
+    // recebe a media para aprovacao dos alunos
+    std::cout << "Informe a media para aprovacao: " << std::endl;
+    std::cin >> mediaAprovacao;
+
+    // aloca vetor de alunos
+    Aluno alunos[qtdTotalAluno];
 
     // coleta dos dados
     do {
-        qtdAluno += 1;
-        printf("Informe o nome do aluno %i. Aluno:", qtdAluno);
-        scanf("%s", &turma[qtdAluno].nome);
+        contAluno += 1;
+        std::cout << "Informe o nome do aluno " << contAluno << " Aluno: " << std::endl;
+        std::cin >> alunos[contAluno].nome;
 
-        for (int nota = 1; nota <= 3; nota++) {
-            printf("Informe as notas do aluno %i: ", qtdAluno);
-            scanf("%f", &turma[qtdAluno].nota[nota]);
+        // garantindo que a posicao ZERO do vetor notas é 0
+        alunos[contAluno].nota[0] = 0;
+        for (int nota=1; nota<=qtdTotalProva; nota++) {
+            float notaAluno;
+            std::cout << "Informe as notas do aluno " << nota << ": " << std::endl;
+            std::cin >> notaAluno;
+            alunos[contAluno].nota[nota] = notaAluno;
             // Estamos usando a primeira posição do vetor para acumular
             // a soma das notas.
-            turma[qtdAluno].nota[0] += turma[qtdAluno].nota[nota];
+            alunos[contAluno].nota[0] += alunos[contAluno].nota[nota];
         }
 
-        // if ternário
-        turma[qtdAluno].aprovado = turma[qtdAluno].nota[0] / 3 >= APROVADO;
+        // if ternario?? tirar dúvida com o professor
+        alunos[contAluno].aprovado = alunos[contAluno].nota[0] / qtdTotalAluno >= mediaAprovacao;
 
-        printf("Informe o sexo do aluno %i: ", qtdAluno);
-        scanf("%s", &turma[qtdAluno].sexo.genero);
-
-
-        printf("Deseja informar o proximo aluno: (S/N)");
-        scanf("%s", &resposta);
-    } while (resposta == 's' or resposta == 'S');
+        std::cout << "Informe o sexo do aluno " << contAluno << ": " << std::endl;
+        std::cin >> alunos[contAluno].sexo.genero;
+    } while (contAluno <= qtdTotalAluno);
     // processamento dos dados
 
     // apresentação dos dados
