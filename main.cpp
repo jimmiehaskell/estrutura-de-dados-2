@@ -51,33 +51,14 @@ int main() {
     std::cin >> mediaAprovacao;
 
     // aloca vetor de alunos
-    Aluno alunos[qtdTotalAluno];
+    std::vector<Aluno> alunos(qtdTotalAluno);
 
-    // coleta dos dados
-    do {
-        contAluno += 1;
-        std::cout << "Informe o nome do aluno " << contAluno << " Aluno: " << std::endl;
-        std::cin >> alunos[contAluno].nome;
+    // coleta dados
+    while (contAluno < qtdTotalAluno) {
+        // TODO nomeAluno, 'for()' notaProva, sexo aluno
 
-        // garantindo que a posicao ZERO do vetor notas é 0
-        alunos[contAluno].nota[0] = 0;
-        for (int nota=1; nota<=qtdTotalProva; nota++) {
-            float notaAluno;
-            std::cout << "Informe as notas do aluno " << nota << ": " << std::endl;
-            std::cin >> notaAluno;
-            alunos[contAluno].nota[nota] = notaAluno;
-            // Estamos usando a primeira posição do vetor para acumular
-            // a soma das notas.
-            alunos[contAluno].nota[0] += alunos[contAluno].nota[nota];
-        }
+        contAluno++;
+    }
 
-        // if ternario?? tirar dúvida com o professor
-        alunos[contAluno].aprovado = alunos[contAluno].nota[0] / qtdTotalAluno >= mediaAprovacao;
-
-        std::cout << "Informe o sexo do aluno " << contAluno << ": " << std::endl;
-        std::cin >> alunos[contAluno].sexo.genero;
-    } while (contAluno <= qtdTotalAluno);
-    // processamento dos dados
-
-    // apresentação dos dados
+    // apresentação
 }
