@@ -26,8 +26,8 @@ struct Aluno {
     std::string nome;
     std::vector<float> nota;
     Sexo sexo;
-    bool aprovado;
     float media;
+    bool aprovado;
 };
 
 
@@ -39,16 +39,19 @@ int main() {
     float mediaAprovacao=0;
 
     // recebe o total de alunos
-    std::cout << "Informe o total de alunos na turma: " << std::endl;
+    std::cout << "Informe o total de alunos na turma: ";
     std::cin >> qtdTotalAluno;
+    std::cout << std::endl;
 
     // recebe o total de provas da turma
-    std::cout << "Informe o total de provas: " << std::endl;
+    std::cout << "Informe o total de provas: ";
     std::cin >> qtdTotalProva;
+    std::cout << std::endl;
 
     // recebe a media para aprovacao dos alunos
-    std::cout << "Informe a media para aprovacao: " << std::endl;
+    std::cout << "Informe a media para aprovacao: ";
     std::cin >> mediaAprovacao;
+    std::cout << std::endl;
 
     // aloca vetor de alunos
     std::vector<Aluno> alunos(qtdTotalAluno);
@@ -56,9 +59,33 @@ int main() {
     // coleta dados
     while (contAluno < qtdTotalAluno) {
         // TODO nomeAluno, 'for()' notaProva, sexo aluno
-
         contAluno++;
+        std::cout << "Informe o nome do aluno " << contAluno << ": ";
+        std::cin >> alunos[contAluno].nome;
+        std::cout << std::endl;
+
+        alunos[contAluno].nota.reserve(qtdTotalProva);
+        float somaNotas = 0;
+        for (int i=0; i<qtdTotalProva; i++) {
+            std::cout << "Informe a nota da " << i << "ª prova: ";
+            std::cin >> alunos[contAluno].nota[i];
+            std::cout << std::endl;
+
+            somaNotas += alunos[contAluno].nota[i];
+        }
+
+        std::cout << "Informe o sexo do aluno, F ou M: ";
+        std::cin >> alunos[contAluno].sexo.genero;
+        std::cout << std::endl;
+
+        alunos[contAluno].media = somaNotas/qtdTotalProva;
+        alunos[contAluno].aprovado = alunos[contAluno].media >= mediaAprovacao;
+
+        std::cout << "Aluno: " << alunos[contAluno].nome << std::endl;
+        std::cout << "\t Média: " << alunos[contAluno].media << std::endl;
+        std::cout << "\t Status: " << alunos[contAluno].aprovado << std::endl;
     }
 
     // apresentação
+    return 0;
 }
