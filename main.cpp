@@ -1,3 +1,5 @@
+#include "main.hpp"
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -17,26 +19,14 @@ aluno
 * Inserir um gráfico em barra e apresentar a % dos alunos aprovados, sugestao do professor.
 */
 
-// strucs
-struct Sexo {
-    char genero;
-};
-
-struct Aluno {
-    std::string nome;
-    std::vector<float> nota;
-    Sexo sexo;
-    float media;
-    bool aprovado;
-};
-
-
 int main() {
     // declacao de variaveis local
-    int qtdTotalAluno=0;
-    int qtdTotalProva=0;
-    int contAluno=0;
-    float mediaAprovacao=0;
+    int qtdTotalAluno = 0;
+    int qtdTotalProva = 0;
+    int contAluno = 0;
+    float mediaAprovacao = 0;
+    int totalAlunoM = 0;
+    int totalAlunoAprovado = 0;
 
     // recebe o total de alunos
     std::cout << "Informe o total de alunos na turma: ";
@@ -58,16 +48,14 @@ int main() {
 
     // coleta dados
     while (contAluno < qtdTotalAluno) {
-        // TODO nomeAluno, 'for()' notaProva, sexo aluno
-        contAluno++;
-        std::cout << "Informe o nome do aluno " << contAluno << ": ";
+        std::cout << "Informe o nome do aluno " << contAluno + 1 << ": ";
         std::cin >> alunos[contAluno].nome;
         std::cout << std::endl;
 
         alunos[contAluno].nota.reserve(qtdTotalProva);
         float somaNotas = 0;
-        for (int i=0; i<qtdTotalProva; i++) {
-            std::cout << "Informe a nota da " << i << "ª prova: ";
+        for (int i = 0; i < qtdTotalProva; i++) {
+            std::cout << "Informe a nota da " << i + 1 << "ª prova: ";
             std::cin >> alunos[contAluno].nota[i];
             std::cout << std::endl;
 
@@ -76,14 +64,22 @@ int main() {
 
         std::cout << "Informe o sexo do aluno, F ou M: ";
         std::cin >> alunos[contAluno].sexo.genero;
+        toupper(alunos[contAluno].sexo.genero);
         std::cout << std::endl;
 
-        alunos[contAluno].media = somaNotas/qtdTotalProva;
+        alunos[contAluno].media = somaNotas / qtdTotalProva;
         alunos[contAluno].aprovado = alunos[contAluno].media >= mediaAprovacao;
+        if (alunos[contAluno].aprovado)
+            totalAlunoAprovado++;
 
-        std::cout << "Aluno: " << alunos[contAluno].nome << std::endl;
-        std::cout << "\t Média: " << alunos[contAluno].media << std::endl;
-        std::cout << "\t Status: " << alunos[contAluno].aprovado << std::endl;
+        if (alunos[contAluno].sexo.genero == 'M')
+            totalAlunoM++;
+
+        // std::cout << "Aluno:\t\t\t" << alunos[contAluno].nome << std::endl;
+        // std::cout << "\tMédia:\t\t" << alunos[contAluno].media << std::endl;
+        // std::cout << "\tStatus:\t\t" << alunos[contAluno].aprovado << std::endl;
+
+        contAluno++;
     }
 
     // apresentação
