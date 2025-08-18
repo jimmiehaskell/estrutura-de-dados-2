@@ -3,7 +3,7 @@ project(Estrutura_de_Dados_II)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Estrutura_de_Dados_II main.cpp
+add_executable(Estrutura_de_Dados_II Main.cpp
         Menu.cpp
-        Menu.hpp
-        main.hpp)
+        CadastrarAlunos.cpp
+        CadastrarAlunos.hpp)
