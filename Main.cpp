@@ -4,7 +4,7 @@
 * Versao 1: A quantidade de alunos na turma e a media aritmetica das notas de cada aluno
 * Versao 2: Solicitar ao usuario a medida de aprovacao e quantidade provas e gerar relatorio com nome e as notas do
 aluno
-* Versao 3: Introduzir o campo sexo (M-masculino ou F-feminino) e gerar estatistica de aprovacao/reprovacao por sexto
+* Versao 3: Introduzir o campo sexo (M-masculino ou F-feminino) e gera estatistica de aprovacao/reprovacao por sexto
 * Versao 4: Apresentar os relatorios ordenadas por media aritmetica das notas
 * Versao 5: Apresentar um menu de opcoes
 * - 1: Relatorio de aprovados;
@@ -15,7 +15,8 @@ aluno
 */
 
 int main() {
-    Menu().menu();
-    // apresentação
+    // chama o menu
+    Menu::menu();
+
     return 0;
 }

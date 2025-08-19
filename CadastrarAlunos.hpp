@@ -4,7 +4,20 @@
 
 #ifndef CADASTRARALUNOS_HPP
 #define CADASTRARALUNOS_HPP
-#include <iostream>
+// bloco cheio
+#ifdef _WIN32
+    #define CHAR_BLOCK_FULL (char)219
+#else
+    #define CHAR_BLOCK_FULL "\u2588"
+#endif
+
+// bloco médio
+#ifdef _WIN32
+    #define CHAR_BLOCK_MEDIUM (char)177
+#else
+    #define CHAR_BLOCK_MEDIUM "\u2592"
+#endif
+
 #include <string>
 #include <vector>
 
@@ -33,11 +46,15 @@ private:
     int qtdTotalProvas=0;
     float mediaAprovacao=0;
 
+    static bool compararPorMediaFinal(const Aluno &a, const Aluno &b);
+    static void desenharGrafico(int totalAlunos, int totalAlunosAprovados, int totalAlunosAprovadosM);
+
+
 public:
     std::vector<Aluno> cadastrarTurma();
-    void relatorioAprovados(std::vector<std::vector<Aluno>>);
-    void relatorioReprovados();
-    void sair();
+    static void relatorioAprovados(std::vector<std::vector<Aluno>>);
+    static void relatorioReprovados();
+    static void sair();
 };
 
 #endif // CADASTRARALUNOS_HPP
