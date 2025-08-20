@@ -13,8 +13,8 @@ public:
 
         // Persistencia dos dados em tempo de execução
         // por padrão 3, HARDCODED
-        int totalTurmasDB=3;
-        int contTurma=0;
+        int totalTurmasDB = 3;
+        int contTurma = 0;
         std::vector<std::vector<Aluno>> turma_db(totalTurmasDB);
 
         while (loop) {
@@ -35,13 +35,18 @@ public:
                         turma_db[contTurma] = CadastrarAlunos().cadastrarTurma();
                         contTurma++;
                         break;
-                    } else
+                        std::system("clear");
+                    } else {
                         std::cout << "DB cheio!" << std::endl;
+                        std::system("clear");
+                    }
                 case 2:
                     CadastrarAlunos().relatorioAprovados(turma_db);
+                    std::system("clear");
                     break;
                 case 3:
-                    CadastrarAlunos();
+                    std::cout << "TODO: fazer!" << std::endl;
+                    std::system("clear");
                     break;
                 case 4:
                     loop = false;
@@ -50,7 +55,7 @@ public:
                     if (opcaoMenu < 0 || opcaoMenu > 4)
                         std::cout << "Opcao invalida!" << std::endl;
             }
-            opcaoMenu=0;
+            opcaoMenu = 0;
         }
     }
 };

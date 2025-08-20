@@ -53,7 +53,7 @@ private:
 public:
     std::vector<Aluno> cadastrarTurma();
     static void relatorioAprovados(std::vector<std::vector<Aluno>>);
-    static void relatorioReprovados();
+    static void relatorioReprovados(std::vector<std::vector<Aluno>>);
     static void sair();
 };
 

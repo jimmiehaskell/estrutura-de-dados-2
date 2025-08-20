@@ -34,7 +34,7 @@ void CadastrarAlunos::desenharGrafico(int totalAlunos, int totalAlunosAprovados,
         if (i==0) {
             // formar o resulta apenas com a parte inteira 10%, 20%
             std::cout << std::fixed << std::setprecision(0);
-            std::cout << "Total alunos aprovados feminino " << 100-pTotalAlunosAprovadosM << "% e masculino " << pTotalAlunosAprovadosM << "%: ";
+            std::cout << "Total alunos masculino " << pTotalAlunosAprovadosM << "% e feminino " << 100-pTotalAlunosAprovadosM << "%: ";
         }
         std::cout << "\033[94m" << CHAR_BLOCK_FULL << "\033[0m"; // Cor azul claro, representa os alunos aprovados
     }
@@ -134,4 +134,37 @@ void CadastrarAlunos::relatorioAprovados(std::vector<std::vector<Aluno>> turmas)
     }
 }
 
-void CadastrarAlunos::relatorioReprovados() {}
+void CadastrarAlunos::relatorioReprovados(std::vector<std::vector<Aluno>> turmas) {
+    int contReprovados=0;
+    int contReprovadosM=0;
+
+    // Varre o primeiro vetor, contando a quantidade de turmas no BD
+    for (int i = 0; i < turmas.size(); i++) {
+        // Verifica se a turma  no BD
+        // está vazio, se for 'true' pula a interação do for.
+        if (turmas[i].empty()) {
+            break;
+        }
+
+        // Faz a ordenação do vetor de acordo com a média
+        // final de cada aluno, do maior para o menor
+        std::sort(turmas[i].begin(), turmas[i].end(), compararPorMediaFinal);
+
+        // Imprime o total de alunos no primeiro vetor
+        std::cout << "Relação dos alunos(a), reprovados na turma: " << i + 1 << "." << std::endl;
+
+        // Varre o segundo vetor, struct Aluno
+        for (int j = 0; j < turmas[i].size(); j++) {
+            if (!turmas[i].at(j).aprovado) {
+                std::cout << std::fixed << std::setprecision(2);
+                std::cout << "- " << turmas[i].at(j).nome << ", média: " << turmas[i].at(j).media << std::endl;
+                contReprovados++;
+                if (turmas[i].at(j).sexo.genero == 'M')
+                    contReprovadosM++;
+            }
+        }
+
+        std::cout << "Gráfico de aproveitamento da turma: " << i + 1 << "." << std::endl;
+        desenharGrafico(turmas[i].size(),contReprovados, contReprovadosM);
+    }
+}
