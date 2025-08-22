@@ -1,8 +1,5 @@
 #include "Aluno.hpp"
 
-#include <iomanip>
-#include <iostream>
-#include <ostream>
 
 // métodos privados
 void Aluno::setAlunoMedia(std::vector<float> _notas, float _mediaAprovacao) {
@@ -68,7 +65,6 @@ void Aluno::setAlunoNotas(std::vector<float> _notas, float _mediaAprovacao) {
         setAlunoMedia(_notas, _mediaAprovacao);
     }
 }
-
 
 void Aluno::setAlunoSexo(char sexo) {
     this->alunoSexo = sexo;

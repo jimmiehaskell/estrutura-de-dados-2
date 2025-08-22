@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "CadastrarAlunos.hpp"
+#include "Turma.hpp"
 class Menu {
 public:
     static void menu() {
@@ -13,9 +13,9 @@ public:
 
         // Persistencia dos dados em tempo de execução
         // por padrão 3, HARDCODED
-        int totalTurmasDB = 3;
+        int totalTurmasDB = 1;
         int contTurma = 0;
-        std::vector<std::vector<Aluno>> turma_db(totalTurmasDB);
+        std::vector<Turma> turma_db(totalTurmasDB);
 
         while (loop) {
             std::cout << "+-------------------------------------------+" << std::endl;
@@ -32,7 +32,9 @@ public:
             switch (opcaoMenu) {
                 case 1:
                     if (contTurma < totalTurmasDB) {
-                        turma_db[contTurma] = CadastrarAlunos().cadastrarTurma();
+                        Turma turma;
+                        turma.addAluno();
+                        turma_db[contTurma] = turma;
                         contTurma++;
                         break;
                         std::system("clear");
@@ -41,7 +43,7 @@ public:
                         std::system("clear");
                     }
                 case 2:
-                    CadastrarAlunos().relatorioAprovados(turma_db);
+                    // CadastrarAlunos().relatorioAprovados(turma_db);
                     std::system("clear");
                     break;
                 case 3:

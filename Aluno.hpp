@@ -1,5 +1,6 @@
 #ifndef ALUNO_HPP
 #define ALUNO_HPP
+#include <iomanip>
 #include <string>
 #include <vector>
 
@@ -20,7 +21,7 @@ private:
 
 public:
     // construtor
-    Aluno() : alunoMedia(0), alunoAprovado(false){};
+    Aluno()=default;
 
     // métodos
     // getters
