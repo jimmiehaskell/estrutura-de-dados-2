@@ -23,7 +23,7 @@ public:
     void setQtdAlunos(int qtdAlunos);
     void setQtdProvas(int qtdProvas);
     void setMediaAprovacao(float mediaAprovacao);
-    void addAluno();
+    void addAlunos(int qtdTotalAlunos);
 };
 
 
