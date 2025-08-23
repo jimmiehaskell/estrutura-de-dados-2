@@ -1,11 +1,16 @@
-//
-// Created by haskell on 18/08/25.
-//
-
 #include <iostream>
 
 #include "Turma.hpp"
+
 class Menu {
+private:
+    static void limparTela() {
+        #ifdef _WIN32
+            std::system("cls");
+        #else
+            system("clear");
+        #endif
+    }
 public:
     static void menu() {
         bool loop = true;
@@ -17,17 +22,14 @@ public:
         std::vector<Turma> turma_db;
 
         while (loop) {
-            std::cout << "+-------------------------------------------+" << std::endl;
-            std::cout << "|\t\t\t\t\t Menu \t\t\t\t\t|" << std::endl;
-            std::cout << "+-------------------------------------------+" << std::endl;
-            std::cout << "|\t\t Selecione a opcao desejada. \t\t|" << std::endl;
-            std::cout << "+-------------------------------------------+" << std::endl;
-            std::cout << "|\t\t [1] - Cadastrar uma turma. \t\t|" << std::endl;
-            std::cout << "|\t\t [2] - Listar turmas. \t\t\t\t|" << std::endl;
-            std::cout << "|\t\t [3] - Editar turmas. \t\t\t\t|" << std::endl;
-            std::cout << "|\t\t [4] - Deletar turmas. \t\t\t\t|" << std::endl;
-            std::cout << "|\t\t [5] - Sair do programa. \t\t\t|" << std::endl;
-            std::cout << "+-------------------------------------------+" << std::endl;
+            std::cout << "\t#\t Menu" << std::endl;
+            std::cout << "\t#\t Selecione a opcao desejada." << std::endl;
+            std::cout << std::endl;
+            std::cout << "\t#\t [1] - Cadastrar uma turma." << std::endl;
+            std::cout << "\t#\t [2] - Listar turmas." << std::endl;
+            std::cout << "\t#\t [3] - Editar turmas." << std::endl;
+            std::cout << "\t#\t [4] - Deletar turmas." << std::endl;
+            std::cout << "\t#\t [5] - Sair do programa." << std::endl;
             std::cout << std::endl;
             std::cout << "-> ";
             std::cin >> opcaoMenu;
@@ -36,6 +38,7 @@ public:
                     Turma turma;
                     turma_db.push_back(turma);
                     std::cout << "Sem espaço na memoria." << std::endl;
+                    break;
                 }
                 case 2: {
                     for (int i = 0; i < turma_db.size(); i++) {
@@ -45,11 +48,16 @@ public:
                     break;
                 }
                 case 3: {
-                    std::cout << "TODO: fazer!" << std::endl;
                     std::system("clear");
+                    std::cout << "TODO: fazer!" << std::endl;
                     break;
                 }
                 case 4: {
+                    std::system("clear");
+                    std::cout << "TODO: fazer!" << std::endl;
+                    break;
+                }
+                case 5: {
                     loop = false;
                     break;
                 }
