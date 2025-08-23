@@ -10,6 +10,7 @@ private:
     int qtdTotalAlunos;
     int qtdTotalProvas;
     float mediaAprovacao;
+    std::string turmaName;
     std::vector<Aluno> alunos;
 
 public:
@@ -18,11 +19,13 @@ public:
     int getQtdAlunos();
     int getQtdProvas();
     float getMediaAprovacao();
+    std::string getTurmaName();
     std::vector<Aluno> getAlunos();
 
     void setQtdAlunos(int qtdAlunos);
     void setQtdProvas(int qtdProvas);
     void setMediaAprovacao(float mediaAprovacao);
+    void setTurmaName(std::string turmaName);
     void addAlunos(int qtdTotalAlunos);
 };
 

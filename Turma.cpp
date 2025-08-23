@@ -5,6 +5,15 @@
 // contrutor
 Turma::Turma() {
     do {
+        std::cout << "Informe o nome da turma: ";
+        /* solucao para o loop, o 'cin' só pega até o primeiro espaco
+         * usando o 'getline', ele captura do a linha digitada pelo usuario
+         * o 'ws' serve para ignorar espacos em branco no buffer, google.
+         */
+        std::getline(std::cin >> std::ws, turmaName);
+    } while (this->turmaName.empty());
+
+    do {
         std::cout << "Informe a quantidade de alunos da turma: ";
         std::cin >> this->qtdTotalAlunos;
     } while (this->qtdTotalAlunos <= 1);
@@ -38,6 +47,11 @@ float Turma::getMediaAprovacao() {
     return this->mediaAprovacao;
 }
 
+std::string Turma::getTurmaName() {
+    return this->turmaName;
+}
+
+
 std::vector<Aluno> Turma::getAlunos() {
     return this->alunos;
 }
@@ -54,6 +68,11 @@ void Turma::setQtdProvas(int qtdProvas) {
 void Turma::setMediaAprovacao(float mediaAprovacao) {
     this->mediaAprovacao = mediaAprovacao;
 }
+
+void Turma::setTurmaName(std::string turmaName) {
+    this->turmaName = turmaName;
+}
+
 
 void Turma::addAlunos(int qtdTotalAlunos) {
     if (qtdTotalAlunos > 0) {

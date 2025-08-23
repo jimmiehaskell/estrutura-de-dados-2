@@ -38,8 +38,10 @@ public:
                     std::cout << "Sem espaço na memoria." << std::endl;
                 }
                 case 2: {
-                    // CadastrarAlunos().relatorioAprovados(turma_db);
-                    std::system("clear");
+                    for (int i = 0; i < turma_db.size(); i++) {
+                        std::cout << i+1 << "ª Turma, id " << i << ", " << turma_db[i].getTurmaName() << std::endl;
+                        std::cout << "\tQuantidade de alunos: " << turma_db[i].getQtdAlunos() << std::endl << std::endl;
+                    }
                     break;
                 }
                 case 3: {
