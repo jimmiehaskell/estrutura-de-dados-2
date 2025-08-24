@@ -1,5 +1,6 @@
 #ifndef TURMA_HPP
 #define TURMA_HPP
+#include <list>
 #include <vector>
 
 #include "Aluno.hpp"
@@ -21,7 +22,9 @@ public:
     float getMediaAprovacao();
     std::string getTurmaName();
     std::vector<Aluno> getAlunos();
+    static void listTurmas(std::vector<Turma> &turmas);
 
+    void createTurma();
     void setQtdAlunos(int qtdAlunos);
     void setQtdProvas(int qtdProvas);
     void setMediaAprovacao(float mediaAprovacao);

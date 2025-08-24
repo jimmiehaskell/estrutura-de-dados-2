@@ -2,8 +2,41 @@
 
 #include <iostream>
 
-// contrutor
-Turma::Turma() {
+// constructor
+ Turma::Turma() {  }
+
+// getters
+int Turma::getQtdAlunos() {
+    return this->qtdTotalAlunos;
+}
+
+int Turma::getQtdProvas() {
+    return this->qtdTotalProvas;
+}
+
+float Turma::getMediaAprovacao() {
+    return this->mediaAprovacao;
+}
+
+std::string Turma::getTurmaName() {
+    return this->turmaName;
+}
+
+std::vector<Aluno> Turma::getAlunos() {
+    return this->alunos;
+}
+
+void Turma::listTurmas(std::vector<Turma> &turmas) {
+    for (int i = 0; i < turmas.size(); i++) {
+        std::cout << i+1 << "ª Turma, id: " << i << " : " << turmas[i].getTurmaName() << std::endl;
+        std::cout << "\tTotal alunos: " << turmas[i].getQtdAlunos() << std::endl;
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+// setters
+void Turma::createTurma() {
     do {
         std::cout << "Informe o nome da turma: ";
         /* solucao para o loop, o 'cin' só pega até o primeiro espaco
@@ -34,29 +67,6 @@ Turma::Turma() {
     std::cout << "Turma::Turma(); ok!!" << std::endl;
 }
 
-// getters
-int Turma::getQtdAlunos() {
-    return this->qtdTotalAlunos;
-}
-
-int Turma::getQtdProvas() {
-    return this->qtdTotalProvas;
-}
-
-float Turma::getMediaAprovacao() {
-    return this->mediaAprovacao;
-}
-
-std::string Turma::getTurmaName() {
-    return this->turmaName;
-}
-
-
-std::vector<Aluno> Turma::getAlunos() {
-    return this->alunos;
-}
-
-// setters
 void Turma::setQtdAlunos(int qtdAlunos) {
     this->qtdTotalAlunos = qtdAlunos;
 }

@@ -27,7 +27,7 @@ public:
             std::cout << std::endl;
             std::cout << "\t#\t [1] - Cadastrar uma turma." << std::endl;
             std::cout << "\t#\t [2] - Listar turmas." << std::endl;
-            std::cout << "\t#\t [3] - Editar turmas." << std::endl;
+            std::cout << "\t#\t [3] - Buscar turma por ID" << std::endl;
             std::cout << "\t#\t [4] - Deletar turmas." << std::endl;
             std::cout << "\t#\t [5] - Sair do programa." << std::endl;
             std::cout << std::endl;
@@ -36,20 +36,32 @@ public:
             switch (opcaoMenu) {
                 case 1: {
                     Turma turma;
+                    turma.createTurma();
                     turma_db.push_back(turma);
                     std::cout << "Sem espaço na memoria." << std::endl;
                     break;
                 }
                 case 2: {
-                    for (int i = 0; i < turma_db.size(); i++) {
-                        std::cout << i+1 << "ª Turma, id " << i << ", " << turma_db[i].getTurmaName() << std::endl;
-                        std::cout << "\tQuantidade de alunos: " << turma_db[i].getQtdAlunos() << std::endl << std::endl;
-                    }
+                    limparTela();
+                    Turma().listTurmas(turma_db);
                     break;
                 }
                 case 3: {
-                    std::system("clear");
-                    std::cout << "TODO: fazer!" << std::endl;
+                    int i = 0;
+                    limparTela();
+                    Turma().listTurmas(turma_db);
+                    std::vector<Aluno> alunos = turma_db[i].getAlunos();
+
+                    std::cout << "Informe o ID da turma: ";
+                    std::cin >> i;
+                    std::cout << "Turma: " << turma_db[i].getTurmaName() << std::endl;
+                    std::cout << "\tTotal de alunos: " << turma_db[i].getQtdAlunos() << std::endl;
+
+                    for (int i = 0; i < turma_db[i].getQtdAlunos(); i++) {
+                        std::cout << i+1 << "º aluno: " << alunos[i].getAlunoNome() << std::endl;
+                        std::cout << "\tMedia: " << alunos[i].getAlunoMedia() << std::endl;
+                        std::cout << "\tStatus: " << alunos[i].getAlunoAprovado() << std::endl;
+                    }
                     break;
                 }
                 case 4: {
