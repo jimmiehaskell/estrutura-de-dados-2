@@ -59,8 +59,14 @@ public:
                     break;
                 }
                 case 4: {
-                    std::system("clear");
-                    std::cout << "TODO: fazer!" << std::endl;
+                    limparTela();
+                    Turma().listTurmas(turma_db);
+                    std::cout << std::endl;
+                    int idTurma;
+                    std::cout << "Informe o ID da turma que deseja remover: ";
+                    std::cin >> idTurma;
+
+                    Turma().removerTurma(turma_db, idTurma);
                     break;
                 }
                 case 5: {
@@ -68,7 +74,7 @@ public:
                     break;
                 }
                 default: {
-                    if (opcaoMenu < 0 || opcaoMenu > 4)
+                    if (opcaoMenu < 1 || opcaoMenu > 5)
                         std::cout << "Opcao invalida!" << std::endl;
                 }
             }

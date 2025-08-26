@@ -203,3 +203,9 @@ void Turma::imprimeRelatorio(Turma &turma) {
     // Gráfico de aproveitamento da turma e aprovação por sexo
     desenharGrafico(turma.getQtdAlunos(), alunosAprovados, alunosAprovadosF);
 }
+
+void Turma::removerTurma(std::vector<Turma> &turma, int idTurma) {
+    Turma t = turma[idTurma];
+    turma.erase(turma.begin()+idTurma);
+    std::cout << "Turma " << t.getTurmaName() << " removida com sucesso";
+}

@@ -63,6 +63,8 @@ public:
     static void listTurmas(std::vector<Turma> &turmas);
 
     static void imprimeRelatorio(Turma &turma);
+
+    static void removerTurma(std::vector<Turma> &turma, int idTurma);
 };
 
 #endif // TURMA_HPP
