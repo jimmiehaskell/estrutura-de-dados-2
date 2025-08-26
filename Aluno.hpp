@@ -28,7 +28,7 @@ public:
     std::string getAlunoNome();
     std::vector<float> getAlunoNotas();
     char getAlunoSexo();
-    float getAlunoMedia();
+    float getAlunoMedia() const;
     std::string getAlunoAprovado();
 
     // setters

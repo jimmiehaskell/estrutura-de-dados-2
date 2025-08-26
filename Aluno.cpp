@@ -43,7 +43,7 @@ char Aluno::getAlunoSexo() {
     return alunoSexo;
 }
 
-float Aluno::getAlunoMedia() {
+float Aluno::getAlunoMedia() const {
     return alunoMedia;
 }
 

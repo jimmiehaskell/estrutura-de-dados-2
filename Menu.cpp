@@ -47,21 +47,15 @@ public:
                     break;
                 }
                 case 3: {
-                    int i = 0;
+                    int contTurma = 0;
                     limparTela();
                     Turma().listTurmas(turma_db);
-                    std::vector<Aluno> alunos = turma_db[i].getAlunos();
+                    std::vector<Aluno> alunos = turma_db[contTurma].getAlunos();
 
                     std::cout << "Informe o ID da turma: ";
-                    std::cin >> i;
-                    std::cout << "Turma: " << turma_db[i].getTurmaName() << std::endl;
-                    std::cout << "\tTotal de alunos: " << turma_db[i].getQtdAlunos() << std::endl;
-
-                    for (int i = 0; i < turma_db[i].getQtdAlunos(); i++) {
-                        std::cout << i+1 << "º aluno: " << alunos[i].getAlunoNome() << std::endl;
-                        std::cout << "\tMedia: " << alunos[i].getAlunoMedia() << std::endl;
-                        std::cout << "\tStatus: " << alunos[i].getAlunoAprovado() << std::endl;
-                    }
+                    std::cin >> contTurma;
+                    std::cout << "Turma: " << turma_db[contTurma].getTurmaName() << std::endl;
+                    Turma().imprimeRelatorio(turma_db[contTurma]);
                     break;
                 }
                 case 4: {

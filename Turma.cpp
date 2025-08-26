@@ -1,38 +1,31 @@
 #include "Turma.hpp"
 
+#include <algorithm>
+#include <cmath>
 #include <iostream>
 
 // constructor
- Turma::Turma() {  }
+Turma::Turma() {  }
 
 // getters
-int Turma::getQtdAlunos() {
+int Turma::getQtdAlunos() const {
     return this->qtdTotalAlunos;
 }
 
-int Turma::getQtdProvas() {
+int Turma::getQtdProvas() const {
     return this->qtdTotalProvas;
 }
 
-float Turma::getMediaAprovacao() {
+float Turma::getMediaAprovacao() const {
     return this->mediaAprovacao;
 }
 
-std::string Turma::getTurmaName() {
+std::string Turma::getTurmaName() const {
     return this->turmaName;
 }
 
-std::vector<Aluno> Turma::getAlunos() {
+std::vector<Aluno> Turma::getAlunos() const {
     return this->alunos;
-}
-
-void Turma::listTurmas(std::vector<Turma> &turmas) {
-    for (int i = 0; i < turmas.size(); i++) {
-        std::cout << i+1 << "ª Turma, id: " << i << " : " << turmas[i].getTurmaName() << std::endl;
-        std::cout << "\tTotal alunos: " << turmas[i].getQtdAlunos() << std::endl;
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
 }
 
 // setters
@@ -155,6 +148,93 @@ void Turma::addAlunos(int qtdTotalAlunos) {
     // // inclui o aluno no vetor alunos
     // this->alunos.push_back(aluno);
     // std::cout << "ok!!" << std::endl;
+}
+
+// metodos
+void Turma::listTurmas(std::vector<Turma> &turmas) {
+    for (int i = 0; i < turmas.size(); i++) {
+        std::cout << i+1 << "ª Turma, id: " << i << " : " << turmas[i].getTurmaName() << std::endl;
+        std::cout << "\tTotal alunos: " << turmas[i].getQtdAlunos() << std::endl;
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+bool Turma::compararMedia(const Aluno &a, const Aluno &b) {
+    return a.getAlunoMedia() > b.getAlunoMedia();
+}
+
+void Turma::desenharGrafico(const int &qtdAlunos, const int &alunosAprovados, const int &alunosAprovadosF) {
+    // static_cast<float>() eh necessario para garantir que a divisao nao descarte as casas decimais
+    float pTotalAlunosAprovados = std::roundf(static_cast<float>(alunosAprovados)/qtdAlunos*100);
+    float pTotalAlunosAprovadosF = std::roundf(static_cast<float>(alunosAprovadosF)/alunosAprovados*100);
+
+    // Gráfico de total de alunos aprovados
+    for (int i =0; i < static_cast<int>(pTotalAlunosAprovados); i++) {
+        if (i==0) {
+            // formar o resulta apenas com a parte inteira 10%, 20%
+            std::cout << std::fixed << std::setprecision(0);
+            std::cout << "Aproveitamento da turma " << pTotalAlunosAprovados << "%: ";
+        }
+        // Cor verde, representa os alunos aprovados
+        std::cout << "\033[32m" << CHAR_BLOCK_FULL << "\033[0m";
+    }
+    // complate o grafico com os alunos reprovados, valores em %
+    for (int i = 1; i < 100-static_cast<int>(pTotalAlunosAprovados); i++) {
+        // Cor vermelha, representa os alunos reprovados
+        std::cout << "\033[31m" << CHAR_BLOCK_MEDIUM << "\033[0m";
+    }
+    std::cout << std::endl;
+
+    // Gráfico dos alunos aprovados por genero, F/M
+    for (int i = 0; i < static_cast<int>(pTotalAlunosAprovadosF); i++) {
+        if (i==0) {
+            // formar o resulta apenas com a parte inteira 10%, 20%
+            std::cout << std::fixed << std::setprecision(0);
+            std::cout << "Total alunos aprovados, F " << pTotalAlunosAprovadosF << "% e M " << 100-pTotalAlunosAprovadosF << "%: ";
+        }
+        // Cor magenta claro, representa as alunas aprovados
+        std::cout << "\033[95m" << CHAR_BLOCK_FULL << "\033[0m";
+    }
+    for (int i = 0; i < 100-static_cast<int>(pTotalAlunosAprovadosF); i++) {
+        // Cor azul claro, representa os alunos aprovados
+        std::cout << "\033[94m" << CHAR_BLOCK_FULL << "\033[0m";
+    }
+    std::cout << std::endl;
+    std::cout << std::endl;
+}
+
+void Turma::imprimeRelatorio(Turma &turma) {
+    int alunosAprovados=0;
+    int alunosAprovadosF=0;
+
+    std::vector<Aluno> alunos = turma.getAlunos();
+    for (int i = 0; i < turma.getQtdAlunos(); i++) {
+        if (alunos[i].getAlunoMedia() >= turma.getMediaAprovacao()) {
+            alunosAprovados++;
+            if (alunos[i].getAlunoSexo() == 'F') {
+                alunosAprovadosF++;
+            }
+        }
+    }
+
+    /* Faz a ordenação do vetor de acordo com a média
+     * final de cada aluno, do maior para o menor
+     */
+    std::sort(alunos.begin(), alunos.end(), compararMedia);
+
+    // imprime o total de alunos aprovados
+    std::cout << "Relação dos alunos(a) aprovados na turma: " << turma.getTurmaName() << std::endl;
+    for (int i = 0; i < alunosAprovados; i++) {
+        std::cout << "\tNome: " << alunos[i].getAlunoNome() << std::endl;
+        std::cout << "\tSexo: " << alunos[i].getAlunoSexo() << std::endl;
+        std::cout << std::fixed << std::setprecision(2);
+        std::cout << "\tMédia final: " << alunos[i].getAlunoMedia() << std::endl;
+        std::cout << std::endl;
+    }
+
+    // Gráfico de aproveitamento da turma e aprovação por sexo
+    desenharGrafico(turma.getQtdAlunos(), alunosAprovados, alunosAprovadosF);
 }
 
 // // debug
