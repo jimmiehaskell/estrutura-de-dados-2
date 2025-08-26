@@ -115,39 +115,6 @@ void Turma::addAlunos(int qtdTotalAlunos) {
         std::cout << "addAlunos(); ok!!" << std::endl;
         }
     }
-    // std::string alunoNome;
-    // char alunoSexo;
-    // std::vector<float> alunoNotas(this->qtdTotalProvas);
-    //
-    // // inicio da coleta dos dados para cadastrar um novo aluno
-    // do {
-    //     std::cout << "Informe o nome do aluno(a): ";
-    //     std::cin >> alunoNome;
-    // } while (alunoNome == "");
-    //
-    // do {
-    //     std::cout << "Informe o sexo do aluno(a), (F-feminino ou M-masculino): ";
-    //     std::cin >> alunoSexo;
-    //     alunoSexo = toupper(alunoSexo);
-    // } while (alunoSexo != 'F' && alunoSexo != 'M');
-    //
-    // for (int i = 0; i < this->qtdTotalProvas; i++) {
-    //     std::cout << "Informe a " << i+1 << "ª nota do aluno(a) " << alunoNome << ": ";
-    //     std::cin >> alunoNotas[i];
-    //     std::cout << std::endl;
-    // }
-    // // fim
-    //
-    // // inicio da persistencia dos dados do aluno
-    // Aluno aluno;
-    // aluno.setAlunoNome(alunoNome);
-    // aluno.setAlunoSexo(alunoSexo);
-    // aluno.setAlunoNotas(alunoNotas, this->mediaAprovacao);
-    // // fim
-    //
-    // // inclui o aluno no vetor alunos
-    // this->alunos.push_back(aluno);
-    // std::cout << "ok!!" << std::endl;
 }
 
 // metodos
@@ -236,11 +203,3 @@ void Turma::imprimeRelatorio(Turma &turma) {
     // Gráfico de aproveitamento da turma e aprovação por sexo
     desenharGrafico(turma.getQtdAlunos(), alunosAprovados, alunosAprovadosF);
 }
-
-// // debug
-// int main() {
-//     Turma turma;
-//     turma.addAluno();
-//     std::cout << "ok main!" << std::endl;
-//     return 0;
-// }
