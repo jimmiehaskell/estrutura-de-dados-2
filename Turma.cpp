@@ -152,6 +152,7 @@ void Turma::desenharGrafico(const int &qtdAlunos, const int &alunosAprovados, co
         std::cout << "\033[31m" << CHAR_BLOCK_MEDIUM << "\033[0m";
     }
     std::cout << std::endl;
+    std::cout << std::endl;
 
     // Gráfico dos alunos aprovados por genero, F/M
     for (int i = 0; i < static_cast<int>(pTotalAlunosAprovadosF); i++) {
