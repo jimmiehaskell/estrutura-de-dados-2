@@ -1,6 +1,15 @@
 #include "Aluno.hpp"
 
 
+// constructor
+Aluno::Aluno()=default;
+
+Aluno::Aluno(std::string alunoNome, char alunoSexo, std::vector<float> alunoNotas, float mediaAprovacao) {
+    setAlunoNome(alunoNome);
+    setAlunoSexo(alunoSexo);
+    setAlunoNotas(alunoNotas, mediaAprovacao);
+}
+
 // métodos privados
 void Aluno::setAlunoMedia(std::vector<float> _notas, float _mediaAprovacao) {
     float somaNotas = 0;
@@ -27,12 +36,6 @@ bool Aluno::compararMedias(const Aluno &a, const Aluno &b, bool o) {
         return a.alunoMedia > b.alunoMedia;
     }
     return a.alunoMedia < b.alunoMedia;
-}
-
-Aluno::Aluno(std::string alunoNome, char alunoSexo, std::vector<float> alunoNotas, float mediaAprovacao) {
-    setAlunoNome(alunoNome);
-    setAlunoSexo(alunoSexo);
-    setAlunoNotas(alunoNotas, mediaAprovacao);
 }
 
 // métodos publicos
