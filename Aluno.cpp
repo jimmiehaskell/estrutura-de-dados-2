@@ -37,6 +37,7 @@ bool Aluno::compararMedias(const Aluno &a, const Aluno &b, bool o) {
     }
     return a.alunoMedia < b.alunoMedia;
 }
+// fim métodos privados
 
 // métodos publicos
 // getters
@@ -62,6 +63,7 @@ std::string Aluno::getAlunoAprovado() {
     }
     return "Reprovado!";
 }
+// fim dos getters
 
 // setters
 void Aluno::setAlunoNome(std::string nome) {
@@ -78,6 +80,8 @@ void Aluno::setAlunoNotas(std::vector<float> _notas, float _mediaAprovacao) {
 void Aluno::setAlunoSexo(char sexo) {
     this->alunoSexo = sexo;
 }
+// fim dos setters
+//fim dos métodos publicos
 
 // int main() {
 //     Aluno aluno1;
