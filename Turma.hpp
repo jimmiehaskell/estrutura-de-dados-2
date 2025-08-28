@@ -29,42 +29,30 @@ private:
 
     // metodos
     static bool compararMedia(const Aluno &a, const Aluno &b);
-
     static void desenharGrafico(const int &qtdAlunos, const int &alunosAprovados, const int &alunosAprovadosF);
 
 public:
     Turma();
+    ~Turma();
 
     // getters
     int getQtdAlunos() const;
-
     int getQtdProvas() const;
-
     float getMediaAprovacao() const;
-
     std::string getTurmaName() const;
-
     std::vector<Aluno> getAlunos() const;
 
     // setters
-    void createTurma();
-
     void setQtdAlunos(int qtdAlunos);
-
     void setQtdProvas(int qtdProvas);
-
     void setMediaAprovacao(float mediaAprovacao);
-
     void setTurmaName(std::string turmaName);
 
-    void addAlunos(int qtdTotalAlunos);
-
     // metodos
-    static void listTurmas(std::vector<Turma> &turmas);
-
+    void addAlunos(int qtdTotalAlunos);
+    void createTurma();
     static void imprimeRelatorio(Turma &turma);
-
+    static void listTurmas(std::vector<Turma> &turmas);
     static void removerTurma(std::vector<Turma> &turma, int idTurma);
 };
-
 #endif // TURMA_HPP
