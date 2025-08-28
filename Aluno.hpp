@@ -22,6 +22,7 @@ private:
 public:
     // construtor
     Aluno()=default;
+    Aluno(std::string alunoNome, char alunoSexo, std::vector<float> alunoNotas, float mediaAprovacao);
 
     // métodos
     // getters

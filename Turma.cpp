@@ -75,14 +75,10 @@ void Turma::addAlunos(int qtdTotalAlunos) {
             }
             // fim
 
-            // inicio da persistencia dos dados do aluno
-            Aluno aluno;
-            aluno.setAlunoNome(alunoNome);
-            aluno.setAlunoSexo(alunoSexo);
-            aluno.setAlunoNotas(alunoNotas, this->mediaAprovacao);
-            // fim
+            // cria um objeto Aluno
+            Aluno aluno(alunoNome, alunoSexo, alunoNotas, this->mediaAprovacao);
 
-            // inclui o aluno no vetor alunos
+            // inclui o objeto aluno no vetor alunos
             this->alunos.push_back(aluno);
         }
     }
