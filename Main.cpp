@@ -10,13 +10,9 @@ aluno
 * - 1: Relatorio de aprovados;
 * - 2: Relatorio de reprovados; e
 * - 3: Sair do programa.
-*
-* Inserir um gráfico em barra e apresentar a % dos alunos aprovados, sugestao do professor.
 */
 
 int main() {
-    // chama o menu
     Menu::menu();
-
     return 0;
 }
